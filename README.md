@@ -1,1 +1,3 @@
-# prueba-twj-ariashomero
+# pokemonGo
+
+a [Sails](http://sailsjs.org) application
