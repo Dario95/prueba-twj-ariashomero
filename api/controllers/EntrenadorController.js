@@ -45,7 +45,7 @@ module.exports = {
                 });
               }
 
-              res.view('Entrenador/ListarEntrenadores', {
+              res.view('Entrenador/listarEntrenadores', {
                 entrenadores: entrenadoresEncontrados
               });
             })
@@ -109,7 +109,7 @@ module.exports = {
                 }
               });
             }
-            res.view('Entrenador/ListarEntrenadores', {
+            res.view('Entrenador/listarEntrenadores', {
               entrenadores: entrenadoresEncontrados
             });
           })
@@ -162,7 +162,7 @@ module.exports = {
               });
             }
 
-            res.view('Entrenador/ListarEntrenadores', {
+            res.view('Entrenador/listarEntrenadores', {
               entrenadores: entrenadoresEncontrados
             });
           })
