@@ -9,6 +9,25 @@ module.exports = {
 
   attributes: {
 
+    nombre:{
+      type:'string',
+      required:true
+    },
+    fechaInicio:{
+      type:'date'
+    },
+    Region:{
+      type:'string',
+      enum:['Alola',
+        'Johto',
+        'Kanto',
+        'Hoenn',
+        'Teselia',
+        'Sinnoh',
+        'Kalos',
+        'Islas Sete'
+      ]
+    }
   }
 };
 
