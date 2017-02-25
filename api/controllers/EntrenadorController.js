@@ -80,7 +80,7 @@ module.exports = {
     }
 
   },
-  BorrarEntrenador: function (req, res) {
+  borrarEntrenador: function (req, res) {
     var parametros = req.allParams();
 
     if (parametros.id) {
@@ -93,7 +93,7 @@ module.exports = {
             error: {
               desripcion: "Tuvimos un Error Inesperado",
               rawError: errorInesperado,
-              url: "/ListarEntrenador"
+              url: "/ListarEntrenadores"
             }
           });
         }
@@ -109,7 +109,7 @@ module.exports = {
                 }
               });
             }
-            res.view('Entrenadores/ListarEntrenadores', {
+            res.view('/ListarEntrenadores', {
               entrenadores: entrenadoresEncontrados
             });
           })

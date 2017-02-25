@@ -2,9 +2,9 @@
 <h1>Editar Entrenador  - <%= entrenadorAEditar.nombres %></h1>
 
 <div class="row">
-  <div class="col-sm-1"></div>
-  <div class="col-sm-4 opaque1">
+  <div class="col-sm-5">
     <form action="/Entrenador/EditarEntrenador" method="post">
+
       <div class="form-group">
         <label>Nombres</label>
         <input type="text" class="form-control" placeholder="Ingrese sus Nombres" name="nombres" value="<%= entrenadorAEditar.nombres %>">
@@ -29,22 +29,25 @@
           <option>Sete</option>
         </select>
       </div>
-        <input type="hidden" name="idEntrenador" value="<%= entrenadorAEditar.id %>">
-      <button type="submit" class="btn btn-primary">Editar Entrenador :)</button>
+        <input type="text" name="idEntrenador" value="<%= entrenadorAEditar.id %>">
+
+
+
+
+
+      <button type="submit" class="btn btn-block">Editar Entrenador :)</button>
     </form>
-    <br>
-  </div>
-  <div class="col-sm-2"></div>
-  <div class="col-sm-4 text-center opaque1">
-    <h2><%= entrenadorAEditar.nombres %></h2>
-    <input id="fechaOrigen" hidden value="<%= entrenadorAEditar.fechaInicio %>">
-    <h3>
-      <%= entrenadorAEditar.region %>
-    </h3>
-    <p ><%= entrenadorAEditar.fechaInicio.toDateString() %></p>
 
   </div>
-  <div class="col-sm-1"></div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-5 text-center">
+    <h2><%= entrenadorAEditar.nombres %></h2>
+    <input id="fechaOrigen" hidden value="<%= entrenadorAEditar.fechaInicio%>">
+    <h4 ><%= entrenadorAEditar.fechaInicio%></h4>
+    <p>
+      <%= entrenadorAEditar.region %>
+    </p>
+  </div>
 
 </div>
 <script>
