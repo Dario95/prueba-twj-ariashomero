@@ -22,7 +22,6 @@ module.exports = {
     });
   },
   listarEntrenadores: function (req, res) {
-
     Entrenador.find()
       .exec(function (errorIndefinido, entrenadoresEncontrados) {
 
@@ -82,71 +81,7 @@ module.exports = {
 
     }
   },
-  crearPokemon: function (req, res) {
-    return res.view('Pokemon/crearPokemon');
-  },
-  listarPokemon: function (req, res) {
-    Pokemon.find(parametros.id_Entrenador)
-      .exec(function (errorIndefinido, pokemonEncontrados) {
-        if (errorIndefinido) {
-          res.view('vistas/Error', {
-            error: {
-              desripcion: "Hubo un problema cargando los pokemon",
-              rawError: errorIndefinido,
-              url: "/ListarPokemon"
-            }
-          });
-        }
 
-        res.view('Entrenador/ListarEntrenadores', {
-          entrenadores: entrenadoresEncontrados
-        });
-      })
-  },
-  editarPokemon: function (req, res) {
-
-    var parametros = req.allParams();
-
-    if (parametros.id) {
-
-      Entrenador.findOne({
-        id: parametros.id
-      }).exec(function (errorInesperado, entrenadorEncontrado) {
-        if (errorInesperado) {
-          return res.view('vistas/Error', {
-            error: {
-              desripcion: "Error Inesperado",
-              rawError: errorInesperado,
-              url: "/ListarEntrenadores"
-            }
-          });
-        }
-        if(entrenadorEncontrado){
-          return res.view("Entrenador/editarEntrenador",{
-            entrenadorAEditar:entrenadorEncontrado
-          });
-        }else{
-          return res.view('vistas/Error', {
-            error: {
-              desripcion: "El entrenador con id: "+parametros.id+" no existe.",
-              rawError: "No existe el entrenador",
-              url: "/ListarEntrenadores"
-            }
-          });
-        }
-      })
-    } else {
-
-      return res.view('vistas/Error', {
-        error: {
-          desripcion: "No ha enviado el parametro ID",
-          rawError: "Faltan Parametros",
-          url: "/ListarEntrenadores"
-        }
-      });
-
-    }
-  },
 
   };
 

@@ -109,7 +109,7 @@ module.exports = {
                 }
               });
             }
-            res.view('/ListarEntrenadores', {
+            res.view('Entrenador/ListarEntrenadores', {
               entrenadores: entrenadoresEncontrados
             });
           })
