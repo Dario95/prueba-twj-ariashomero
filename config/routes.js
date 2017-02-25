@@ -32,9 +32,22 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
+  'get /': 'RoutesController.home',
+
+  'get /Login':
+    {
+      view: 'login'
+    },
+
+  'get /Inicio': 'RoutesController.home',
+
+  'get /CrearEntrenador': 'RoutesController.crearEntrenador',
+
+  'get /ListarEntrenadores': 'RoutesController.listarEntrenadores',
+
+  'get /EditarEntrenador': 'RoutesController.editarEntrenador',
+
+  'get /Error': 'RoutesController.error'
 
   /***************************************************************************
   *                                                                          *

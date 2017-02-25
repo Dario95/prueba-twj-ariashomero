@@ -11,47 +11,42 @@ module.exports = {
     if (req.method == "POST") {
 
       var parametros = req.allParams();
+      if (parametros.nombres && parametros.fechaInicio && parametros.region) {
 
-      if (parametros.nombres && parametros.fechaInicio) {
-
-        var usuarioCrear = {
+        var entrenadorCrear = {
           nombres: parametros.nombres,
           fechaInicio: parametros.fechaInicio,
           region: parametros.region
-        }
-
-        if (usuarioCrear.region == "") {
-          delete usuarioCrear.region
-        }
-
-        Usuario.create(usuarioCrear).exec(function (err, usuarioCreado) {
+        };
+        console.log(entrenadorCrear);
+        Entrenador.create(entrenadorCrear).exec(function (err, entrenadorCreado) {
 
           if (err) {
             return res.view('vistas/Error', {
               error: {
-                desripcion: "Fallo al crear el Usuario",
+                desripcion: "Fallo al crear el Entrenador",
                 rawError: err,
-                url: "/CrearUsuario"
+                url: "/CrearEntrenador"
               }
 
             });
           }
 
-          Usuario.find()
-            .exec(function (errorIndefinido, usuariosEncontrados) {
+          Entrenador.find()
+            .exec(function (errorIndefinido, entrenadoresEncontrados) {
 
               if (errorIndefinido) {
                 res.view('vistas/Error', {
                   error: {
-                    desripcion: "Hubo un problema cargando los Usuarios",
+                    desripcion: "Hubo un problema cargando los Entrenadores",
                     rawError: errorIndefinido,
-                    url: "/ListarUsuarios"
+                    url: "/ListarEntrenadores"
                   }
                 });
               }
 
-              res.view('vistas/Usuario/ListarUsuarios', {
-                usuarios: usuariosEncontrados
+              res.view('Entrenador/ListarEntrenadores', {
+                entrenadores: entrenadoresEncontrados
               });
             })
 
@@ -62,9 +57,9 @@ module.exports = {
 
         return res.view('vistas/Error', {
           error: {
-            desripcion: "Llena todos los parametros, fechaInicio y nombres",
-            rawError: "Fallo en envio de parametros",
-            url: "/CrearUsuario"
+            desripcion: "Llena todos los parametros.",
+            rawError: "Fallo en envio de parametros.",
+            url: "/CrearEntrenador"
           }
 
         });
@@ -78,46 +73,44 @@ module.exports = {
         error: {
           desripcion: "Error en el uso del Metodo HTTP",
           rawError: "HTTP Invalido",
-          url: "/CrearUsuario"
+          url: "/CrearEntrenador"
         }
       });
 
     }
 
   },
-  BorrarUsuario: function (req, res) {
-
+  BorrarEntrenador: function (req, res) {
     var parametros = req.allParams();
 
     if (parametros.id) {
 
-      Usuario.destroy({
+      Entrenador.destroy({
         id: parametros.id
-      }).exec(function (errorInesperado, UsuarioRemovido) {
+      }).exec(function (errorInesperado, EntrenadorRemovido) {
         if (errorInesperado) {
           return res.view('vistas/Error', {
             error: {
               desripcion: "Tuvimos un Error Inesperado",
               rawError: errorInesperado,
-              url: "/ListarUsuarios"
+              url: "/ListarEntrenador"
             }
           });
         }
-        Usuario.find()
-          .exec(function (errorIndefinido, usuariosEncontrados) {
+        Entrenador.find()
+          .exec(function (errorIndefinido, entrenadoresEncontrados) {
 
             if (errorIndefinido) {
               res.view('vistas/Error', {
                 error: {
-                  desripcion: "Hubo un problema cargando los Usuarios",
+                  desripcion: "Hubo un problema cargando los entrenadores",
                   rawError: errorIndefinido,
-                  url: "/ListarUsuarios"
+                  url: "/ListarEntrenadores"
                 }
               });
             }
-
-            res.view('vistas/Usuario/ListarUsuarios', {
-              usuarios: usuariosEncontrados
+            res.view('Entrenadores/ListarEntrenadores', {
+              entrenadores: entrenadoresEncontrados
             });
           })
       })
@@ -125,69 +118,52 @@ module.exports = {
     } else {
       return res.view('vistas/Error', {
         error: {
-          desripcion: "Necesitamos el ID para borrar al Usuario",
+          desripcion: "Necesitamos el ID para borrar al Entrenador",
           rawError: "No envia ID",
-          url: "/ListarUsuarios"
+          url: "/ListarEntrenadores"
         }
       });
     }
   },
-  editarUsuario: function (req, res) {
+  editarEntrenador: function (req, res) {
     var parametros = req.allParams();
 
-    if (parametros.idUsuario && (parametros.nombres || parametros.fechaInicio || parametros.region)) {
+    if (parametros.idEntrenador && (parametros.nombres || parametros.fechaInicio || parametros.region)) {
 
 
-      var usuarioAEditar = {
+      var entrenadorAEditar = {
         nombres: parametros.nombres,
         fechaInicio: parametros.fechaInicio,
-        region: parametros.region,
-        password: parametros.password
-      }
+        region: parametros.region
+      };
 
-      if (usuarioAEditar.nombres == "") {
-        delete usuarioAEditar.nombres
-      }
-
-      if (usuarioAEditar.fechaInicio == "") {
-        delete usuarioAEditar.fechaInicio
-      }
-
-      if (usuarioAEditar.region == "") {
-        delete usuarioAEditar.region
-      }
-      if (usuarioAEditar.password == "") {
-        delete usuarioAEditar.password
-      }
-
-
-      Usuario.update({
-        id: parametros.idUsuario
-      }, usuarioAEditar).exec(function (errorInesperado, UsuarioRemovido) {
+      Entrenador.update({
+        id: parametros.idEntrenador
+      }, entrenadorAEditar).exec(function (errorInesperado, entrenadorRemovido) {
         if (errorInesperado) {
           return res.view('vistas/Error', {
             error: {
               desripcion: "Tuvimos un Error Inesperado",
               rawError: errorInesperado,
-              url: "/ListarUsuarios"
+              url: "/ListarEntrenadores"
             }
           });
         }
-        Usuario.find()
-          .exec(function (errorIndefinido, usuariosEncontrados) {
+        Entrenador.find()
+          .exec(function (errorIndefinido, entrenadoresEncontrados) {
 
             if (errorIndefinido) {
               res.view('vistas/Error', {
                 error: {
-                  desripcion: "Hubo un problema cargando los Usuarios",
+                  desripcion: "Hubo un problema cargando los Entrenadores",
                   rawError: errorIndefinido,
-                  url: "/EditarUsuario"
+                  url: "/EditarEntrenador"
                 }
               });
             }
 
-            res.view('vistas/Usuario/ListarUsuarios', {
-              usuarios: usuariosEncontrados
+            res.view('Entrenador/ListarEntrenadores', {
+              entrenadores: entrenadoresEncontrados
             });
           })
       })
@@ -197,7 +173,7 @@ module.exports = {
         error: {
           desripcion: "Necesitamos que envies los parámetros ",
           rawError: "No envia Parámetros",
-          url: "/ListarUsuarios"
+          url: "/ListarEntrenadores"
         }
       });
     }

@@ -9,6 +9,22 @@ module.exports = {
 
   attributes: {
 
+    nombre:{
+      type:'string',
+      required:true
+    },
+    tipo1:{
+      type:'string',
+      enum:[ 'Acero', 'Agua', 'Bicho', 'Dragón', 'Eléctrico', 'Fantasma', 'Fuego', 'Hada', 'Hielo', 'Lucha', 'Normal', 'Planta', 'Psíquico', 'Roca', 'Siniestro', 'Tierra', 'Veneno', 'Volador']
+    },tipo2:{
+      type:'string',
+      enum:[ 'Acero', 'Agua', 'Bicho', 'Dragón', 'Eléctrico', 'Fantasma', 'Fuego', 'Hada', 'Hielo', 'Lucha', 'Normal', 'Planta', 'Psíquico', 'Roca', 'Siniestro', 'Tierra', 'Veneno', 'Volador']
+    },
+    idEntrenador:{
+        model: 'Entrenador',
+      required:true
+    }
+
   }
 };
 

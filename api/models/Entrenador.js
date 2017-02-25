@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
 
-    nombre:{
+    nombres:{
       type:'string',
       required:true
     },
@@ -27,6 +27,10 @@ module.exports = {
         'Kalos',
         'Islas Sete'
       ]
+    },
+    pokemon: {
+      collection: 'Pokemon',
+      via: 'idEntrenador'
     }
   }
 };
