@@ -12,6 +12,8 @@ module.exports = {
     nombre:{
       type:'string',
       required:true
+    },imagen:{
+      type:'string'
     },
     tipo1:{
       type:'string',

@@ -47,6 +47,8 @@ module.exports.routes = {
 
   'get /EditarEntrenador': 'RoutesController.editarEntrenador',
 
+  'get /CrearPokemon': 'RoutesController.crearPokemon',
+
   'get /Error': 'RoutesController.error'
 
   /***************************************************************************

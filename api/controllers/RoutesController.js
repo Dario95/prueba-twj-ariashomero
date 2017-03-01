@@ -81,6 +81,24 @@ module.exports = {
 
     }
   },
+  crearPokemon: function (req, res) {
+    Entrenador.find()
+      .exec(function (errorIndefinido, entrenadoresEncontrados) {
+
+        if (errorIndefinido) {
+          res.view('vistas/Error', {
+            error: {
+              desripcion: "Hubo un problema cargando los Entrenadores",
+              rawError: errorIndefinido,
+              url: "/"
+            }
+          });
+        }
+        res.view('Pokemon/crearPokemon', {
+          entrenadores: entrenadoresEncontrados
+        });
+      })
+  }
 
 
   };
