@@ -42,12 +42,12 @@ module.exports.routes = {
   'get /Inicio': 'RoutesController.home',
 
   'get /CrearEntrenador': 'RoutesController.crearEntrenador',
-
   'get /ListarEntrenadores': 'RoutesController.listarEntrenadores',
-
   'get /EditarEntrenador': 'RoutesController.editarEntrenador',
 
   'get /CrearPokemon': 'RoutesController.crearPokemon',
+  'get /ListarPokemon': 'RoutesController.listarPokemon',
+  'get /EditarPokemon': 'RoutesController.editarPokemon',
 
   'get /Error': 'RoutesController.error'
 

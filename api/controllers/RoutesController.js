@@ -98,7 +98,83 @@ module.exports = {
           entrenadores: entrenadoresEncontrados
         });
       })
-  }
+  },
+  listarPokemon: function (req, res) {
+    Pokemon.find().populate("idEntrenador")
+      .exec(function (errorIndefinido, pokemonEncontrados) {
+
+        if (errorIndefinido) {
+          res.view('vistas/Error', {
+            error: {
+              desripcion: "Hubo un problema cargando los Pokemon",
+              rawError: errorIndefinido,
+              url: "/ListarPokemon"
+            }
+          });
+        }
+
+        res.view('Pokemon/listarPokemon', {
+          pokemon: pokemonEncontrados
+        });
+      })
+  },
+  editarPokemon: function (req, res) {
+    var parametros = req.allParams();
+    if (parametros.id) {
+      Pokemon.findOne({
+        id: parametros.id
+      }).populate("idEntrenador").exec(function (errorInesperado, pokemonEncontrado) {
+        if (errorInesperado) {
+          return res.view('vistas/Error', {
+            error: {
+              desripcion: "Error Inesperado",
+              rawError: errorInesperado,
+              url: "/ListarPokemon"
+            }
+          });
+        }
+        if(pokemonEncontrado){
+          Entrenador.find()
+            .exec(function (errorIndefinido, entrenadoresEncontrados) {
+
+              if (errorIndefinido) {
+                res.view('vistas/Error', {
+                  error: {
+                    desripcion: "Hubo un problema cargando los Entrenadores",
+                    rawError: errorIndefinido,
+                    url: "/"
+                  }
+                });
+              }
+              return res.view("Pokemon/editarPokemon",{
+                pokemonAEditar:pokemonEncontrado,
+                entrenadores: entrenadoresEncontrados
+              });
+
+            })
+
+        }else{
+          return res.view('vistas/Error', {
+            error: {
+              desripcion: "El pokemon con id: "+parametros.id+" no existe.",
+              rawError: "No existe el okemon",
+              url: "/ListarPokemon"
+            }
+          });
+        }
+      })
+    } else {
+
+      return res.view('vistas/Error', {
+        error: {
+          desripcion: "No ha enviado el parametro ID",
+          rawError: "Faltan Parametros",
+          url: "/ListarPokemon"
+        }
+      });
+
+    }
+  },
 
 
   };
